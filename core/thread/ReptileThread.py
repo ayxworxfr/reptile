@@ -16,7 +16,7 @@ class ReptileThread(threading.Thread):
     def run(self):
         # reptile = Reptile(self.source, self.url)
         reptile = Reptile()
-        print('开始线程:' + self.name)
+        print('开始线程:' + self.name + '\n')
         if(self.action == "SaveToTxt"):
             reptile.start(self.url)
         elif(self.action == "SaveToMysql"):

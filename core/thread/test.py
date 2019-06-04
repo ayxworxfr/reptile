@@ -5,18 +5,17 @@ if __name__ == '__main__':
     space = 500
     source = 'biqiuge'
     url_root = 'http://www.biqiuge.com/book/'
-
+    thread_list = []
     for i in range(start, space):
         url_tmp = url_root + str(i) + '/'
         print(url_tmp)
         tmp = 'Thread-' + str(i)
         # SaveToMysql or SaveToTxt
         threadName = ReptileThread(i, tmp, 'biqiuge', url_tmp, action="SaveToMysql")
+        thread_list.append(threadName)
         threadName.start()
         break
-    # for i in range(1, space):
-    #     threadName = ReptileThread(i, tmp, 'biqiuge', url_tmp, action="SaveToMysql")
-    #     threadName.start()
-    #     threadName.join()
+    for thread in thread_list:
+        thread.join()
 
     print("exit")
